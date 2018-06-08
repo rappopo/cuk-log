@@ -1,0 +1,15 @@
+{
+  "name": "@rappopo/cuk-log",
+  "version": "0.0.1",
+  "description": "App & data logger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ardhi Lukianto <ardhi@lukianto.com>",
+  "license": "MIT",
+  "dependencies": {
+    "winston": "^2.4.2",
+    "winston-logrotate": "^1.3.0"
+  }
+}

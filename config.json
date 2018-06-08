@@ -1,0 +1,12 @@
+{
+  "common": {
+    "options": {
+      "colorize": false,
+      "timestamp": true,
+      "json": true,
+      "size": "100m",
+      "keep": 5,
+      "compress": true
+    }
+  }
+}
