@@ -1,6 +1,6 @@
 {
   "common": {
-    "options": {
+    "opts": {
       "colorize": false,
       "timestamp": true,
       "json": true,

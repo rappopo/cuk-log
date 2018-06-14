@@ -18,7 +18,7 @@ module.exports = function(cuk) {
     fs.ensureDirSync(dir)
     _.each(logs, l => {
       let id = `http:${format}:${l.id}`
-      let cfg = helper('core:merge')(pkg.cfg.default, _.omit(options, ['formatter']))
+      let cfg = helper('core:merge')(pkg.cfg.common.opts, _.omit(options, ['formatter']))
       cfg.file = l.file
       let formatter = _.get(options, 'formatter.' + l.id)
       if (formatter)
