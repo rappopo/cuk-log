@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = function(cuk) {
-  const { util } = cuk.lib
+  const { util } = cuk.pkg.core.lib
   const format = 'json'
   const lib = require('./_lib')(cuk)
 

@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = function(cuk) {
-  const { _, helper, path, fs, moment } = cuk.lib
+  const { _, helper, path, fs, moment } = cuk.pkg.core.lib
   const pkgId = 'log'
   const pkg = cuk.pkg[pkgId]
   const winston = pkg.lib.winston
