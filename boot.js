@@ -19,11 +19,11 @@ module.exports = function(cuk){
         v = v || {}
         let name = `${p.id}:${k}`
         if (disabled.indexOf(name) > -1) {
-          helper('core:bootTrace')('%A Disabled %K %s %L DDIR:./log/%s/%s.log', null, null, name, null, p.id, k)
+          helper('core:bootTrace')('|  |- Disabled => %s -> DDIR:./log/%s/%s.log', name, p.id, k)
           return
         }
         helper('log:make')(name, v)
-        helper('core:bootTrace')('%A Enabled %K %s %L DDIR:./log/%s/%s.log', null, null, name, null, p.id, k)
+        helper('core:bootTrace')('|  |- Enabled => %s -> DDIR:./log/%s/%s.log', name, p.id, k)
         if (k === 'main')
           p.log = (severity, msg, meta) => {
             helper('log:get')(name).log(severity, msg, meta)
