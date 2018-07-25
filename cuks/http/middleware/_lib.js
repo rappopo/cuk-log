@@ -6,6 +6,8 @@ module.exports = function(cuk) {
   const pkg = cuk.pkg[pkgId]
   const winston = pkg.lib.winston
 
+  pkg.tmp = {}
+
   const makeLog = (format, options = {}) => {
     const dir = path.join(cuk.dir.data, 'log', 'http', format),
       logs = [{
@@ -71,9 +73,9 @@ module.exports = function(cuk) {
 
   const factory = async (ctx, next, format, accessFn, errorFn) => {
     const key = 'cuks.log.' + format + '.' + ctx.path
-    let called = _.get(ctx.state, key)
+    let called = _.get(pkg.tmp, key)
     if (called) return next()
-    _.set(ctx.state, key, true)
+    _.set(pkg.tmp, key, true)
     makeLog(format, {
       json: false,
       formatter: {
