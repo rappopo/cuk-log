@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = function(cuk) {
+module.exports = function (cuk) {
   const { util } = cuk.pkg.core.lib
   const format = 'commonMultisite'
   const lib = require('./_lib')(cuk)

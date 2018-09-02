@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = function(cuk) {
+module.exports = function (cuk) {
   const { _, helper, path, fs, moment } = cuk.pkg.core.lib
   const pkgId = 'log'
   const pkg = cuk.pkg[pkgId]
@@ -79,7 +79,7 @@ module.exports = function(cuk) {
     makeLog(format, {
       json: false,
       formatter: {
-        access: function(opt) {
+        access: function (opt) {
           return opt.message || ''
         }
       }
@@ -91,7 +91,7 @@ module.exports = function(cuk) {
         start: start,
         duration: moment().diff(start)
       }))
-    } catch(e) {
+    } catch (e) {
 //        winston.loggers.get(`http:${format}:error`).error(e.message)
     }
 

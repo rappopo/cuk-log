@@ -3,7 +3,7 @@
 const winston = require('winston')
 require('winston-logrotate')
 
-module.exports = function(cuk){
+module.exports = function (cuk){
   let pkgId = 'log',
     pkg = cuk.pkg[pkgId]
   const { _, debug, helper, path, fs } = cuk.pkg.core.lib
