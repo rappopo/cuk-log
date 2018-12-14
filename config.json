@@ -1,12 +1,10 @@
 {
-  "common": {
-    "opts": {
-      "colorize": false,
-      "timestamp": true,
-      "json": true,
-      "size": "100m",
-      "keep": 5,
-      "compress": true
-    }
+  "opts": {
+    "colorize": false,
+    "timestamp": true,
+    "json": true,
+    "size": "100m",
+    "keep": 5,
+    "compress": true
   }
 }

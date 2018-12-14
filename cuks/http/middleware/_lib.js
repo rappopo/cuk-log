@@ -2,32 +2,30 @@
 
 module.exports = function (cuk) {
   const { _, helper, path, fs, moment } = cuk.pkg.core.lib
-  const pkgId = 'log'
-  const pkg = cuk.pkg[pkgId]
+  const pkg = cuk.pkg['log']
   const winston = pkg.lib.winston
 
   pkg.tmp = {}
 
   const makeLog = (format, options = {}) => {
-    const dir = path.join(cuk.dir.data, 'log', 'http', format),
-      logs = [{
-        id: 'access',
-        file: path.join(dir, 'access.log')
-      }, {
-        id: 'error',
-        file: path.join(dir, 'error.log')
-      }]
+    const dir = path.join(cuk.dir.data, 'log', 'http', format)
+    const logs = [{
+      id: 'access',
+      file: path.join(dir, 'access.log')
+    }, {
+      id: 'error',
+      file: path.join(dir, 'error.log')
+    }]
     fs.ensureDirSync(dir)
     _.each(logs, l => {
       let id = `http:${format}:${l.id}`
-      let cfg = helper('core:merge')(pkg.cfg.common.opts, _.omit(options, ['formatter']))
+      let cfg = helper('core:merge')(pkg.cfg.opts, _.omit(options, ['formatter']))
       cfg.file = l.file
       let formatter = _.get(options, 'formatter.' + l.id)
-      if (formatter)
-        cfg.formatter = formatter
+      if (formatter) cfg.formatter = formatter
       if (!_.has(winston.loggers.loggers, id)) {
         winston.loggers.add(id, {
-          transports: [ new winston.transports.Rotate(cfg)]
+          transports: [new winston.transports.Rotate(cfg)]
         })
         winston.loggers.get(id).exitOnError = false
       }
@@ -51,9 +49,8 @@ module.exports = function (cuk) {
     let user = '-'
     if (ctx.header.authorization) {
       const parts = ctx.header.authorization.split(' ')
-      if (parts[1]) user = new Buffer(parts[1], 'base64').toString().split(':')[0]
+      if (parts[1]) user = Buffer.from(parts[1], 'base64').toString().split(':')[0]
     }
-    const parts = ctx.header.authorization
     let data = {
       hostname: ctx.request.hostname,
       port: ctx.header.host.split(':')[1],
@@ -92,9 +89,7 @@ module.exports = function (cuk) {
         duration: moment().diff(start)
       }))
     } catch (e) {
-//        winston.loggers.get(`http:${format}:error`).error(e.message)
     }
-
   }
 
   return {
