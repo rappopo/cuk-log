@@ -5,12 +5,12 @@ require('winston-logrotate')
 
 module.exports = function (cuk) {
   let pkg = cuk.pkg['log']
-  const { _, helper, config } = cuk.pkg.core.lib
+  const { _, helper } = cuk.pkg.core.lib
 
   pkg.lib.winston = winston
 
   return new Promise((resolve, reject) => {
-    const disabled = _.get(config('log'), 'disabled', [])
+    const disabled = helper('core:config')('log', 'disabled', [])
     _.each(helper('core:pkgs')(), p => {
       let cfg = _.get(p, 'cfg.cuks.log')
       if (Boolean(cfg) === false) return
